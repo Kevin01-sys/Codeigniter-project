@@ -1,18 +1,22 @@
-<!DOCTYPE html>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="shortcut icon" href="#">
     <!-- Vue version 2 -->
-    <script src="https://unpkg.com/vue@2"></script> 
+    <script src="https://unpkg.com/vue@2"></script>
     <!-- Vue version 3 -->
     <!-- <script src="https://unpkg.com/vue@3"></script> -->
 </head>
 <body>
     <div id="app">
-        <button id="idGetData" name="nameGetData" @click="get_data">{{ name }}</button>
+        <button id="idGetData" name="nameGetData" @click="post_json_data">{{ name }}</button>
+        <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">
         <ul id="example-1">
             <li v-for="item in data">
                 {{ data }}
