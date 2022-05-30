@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,13 +16,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
     <div id="app">
-        <button id="idGetData" name="nameGetData" @click="post_json_data">{{ name }}</button>
-        <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">
-        <ul id="example-1">
-            <li v-for="item in data">
-                {{ data }}
-            </li>
-          </ul>
+        <!-- Form -->
+        <div>
+            <?php echo form_open('users/addUser'); ?>
+            <div>
+                <div class="form-group">
+					<label for="nombre" class="col-sm-2 control-label">Run</label>
+					<div class="col-sm-8"><input id="run" name="run" type="text" class="form-control" autofocus></div>
+				</div>
+				<div class="form-group">
+					<label for="nombre" class="col-sm-2 control-label">Nombres</label>
+					<div class="col-sm-8"><input id="nombre" name="nombre" type="text" class="form-control"  autofocus></div>
+				</div>
+				<div class="form-group">
+					<label for="apellidos" class="col-sm-2 control-label">Hobby</label>
+					<div class="col-sm-8"><input id="hobby" name="hobby" type="text" class="form-control" ></div>
+				</div>
+                <button type="submit">Guardar</button>
+            </div>
+            <?php echo form_close(); ?>
+        </div>
+        <div>
+            <button id="idGetData" name="nameGetData" @click="post_json_data">{{ name }}</button>
+            <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">
+            <ul id="example-1">
+                <li v-for="item in data">
+                    {{ data }}
+                </li>
+            </ul>
+        </div>
     </div>
     <!-- file on which JavaScript tests will be performed -->
     <!-- Vue version 2 -->

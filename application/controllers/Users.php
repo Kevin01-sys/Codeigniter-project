@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('form');
+        $this->load->model('UserModel');
+    }
+
     public function index()
     {
         $this->load->view('get_data');
@@ -32,5 +39,16 @@ class Users extends CI_Controller {
         /* Note: It is not required to set the header('Content-Type:
         application/json') but I think it is a good practice to do so.
         The request already set the 'Accept': 'application/json' header. */
+    }
+
+    public function addUser()
+    {
+        $user['run'] = $this->input->post('run');
+        $user['name'] = $this->input->post('nombre');
+        $user['hobby'] = $this->input->post('hobby');
+        $user['state'] = 1;
+        //var_dump($user);
+        $this->UserModel->add($user);
+        redirect('Users');
     }
 }
