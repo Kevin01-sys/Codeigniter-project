@@ -1,7 +1,6 @@
-Vue.use(VueTables.ServerTable);
-Vue.use(VueTables.ClientTable);
+Vue.use(VueTables.ServerTable, VueTables.Event);
 
-var vmClient = new Vue({
+/* var vmClient = new Vue({
     el:"#peopleClient",
     data: {
     columns: ['id','name','age'],
@@ -16,36 +15,81 @@ var vmClient = new Vue({
     // see the options API
     }
     }
-    });
+    }); */
 
 var vmServer = new Vue({
     el: "#peopleServer",
-    methods: {
-        test() {
-            return 1;
-        }
-    },
     data: {
-        columns: ['id', 'name', 'run'],
-        tableData: [],
-        loading: false,
-        perPage:25,
-        perPageValues:[25],
+        columns: ['id', 'name', 'run'], // must be the names of the data obtained by the URL
+        tableData: [], //
         options: {
-            headings: {
+            columnsClasses: {
+                'actions': 'text-center'
+            },
+            perPage:25, //
+            perPageValues:[25], //
+            orderBy: { //
+                ascending: false,
+                column: 'name'
+            },
+            headings: { // working: change default column headings
                 id: 'identificador',
                 name: 'nombre',
                 run: 'run',
             },
-            customFilters: ['run','name'],
-            responseAdapter({data}) {
+            texts:{ //
+                loadingError: 'Oops! Something went wrong'
+            },
+            sortable: ['id','name'], //
+            requestFunction(data) { // working: obtain data from the URL
+                return axios.get('http://localhost/codeigniter/index.php/Lists/people', {
+                    params: data
+                }).catch(function (e) {
+                    this.dispatch('error', e);
+                });
+            },
+            responseAdapter({data}) { // working: If you are calling a foreign API or simply want to use your own keys, refer to the `responseAdapter` option.
                 return {
                     data,
                     count: data.length
                 }
             }
         },
-        filterable: true
+    }
+});
+
+var vmServer = new Vue({
+    el: "#communesServer",
+    data: {
+        columns: ['id', 'comuna', 'region'], // must be the names of the data obtained by the URL
+        tableData: [], //
+        options: {
+            filterable: true,
+            perPage: 10, // how many items I'm showing per page
+            page: 2, // what page I want to show
+            headings: { // working: change default column headings
+                id: 'identificador',
+                comuna: 'comuna',
+                region: 'region',
+            },
+            texts:{
+                filterPlaceholder: 'filter' // working
+            },
+            sortable: ['id','name'], //
+            requestFunction(data) { // working: obtain data from the URL
+                return axios.get(this.url, {
+                    params: data
+                }).catch(function (e) {
+                    this.dispatch('error', e);
+                });
+            },
+            responseAdapter({data}) { // working: If you are calling a foreign API or simply want to use your own keys, refer to the `responseAdapter` option.
+                return {
+                    data: data.comunas, // records with which Vue Table will work
+                    count: data.contar_comunas[0].lenght // total number of records that Vue Table will work with
+                }
+            }
+        },
     }
 });
 
