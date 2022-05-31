@@ -36,6 +36,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <?php echo form_close(); ?>
         </div>
+			<!-- Tabla de datos -->
+			<div class="row">
+				<div class="card col-12">
+					<div class="card-header">
+						<h4>Tabla de personas</h4>
+					</div>
+					<div class="card-body">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Run</th>
+									<th scope="col">Nombre</th>
+									<th scope="col">Hobby</th>
+                                    <th scope="col">Editar</th>
+                                    <th scope="col">Eliminar</th>
+								</tr>
+							</thead>
+							<tbody>
+                            <?php
+									foreach ($users as $user) {
+										echo '
+											<tr>
+												<td>'.$user->id.'</td>
+												<td>'.$user->run.'</td>
+												<td>'.$user->name.'</td>
+												<td>'.$user->hobby.'</td>
+                                                <td><button type="button" class="btn btn-warning text-white" onclick="llenar_datos('.$user->id.', `'.$user->run.'`, `'.$user->name.'`, `'.$user->hobby.'`)">Editar</button></td>
+												<td><a href="'.base_url('index.php/users/deleteUser/'.$user->id).'" type="button" class="btn btn-danger">Eliminar</a></td>
+											</tr>
+										';
+									}
+								?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
         <div>
             <button id="idGetData" name="nameGetData" @click="post_json_data">{{ name }}</button>
             <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">

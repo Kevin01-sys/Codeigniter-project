@@ -7,5 +7,22 @@ class UserModel extends CI_Model {
     {
         $this->db->insert('users', $user);
     }
+    public function select_all()
+    {
+        $this->db->select('*');
+        $this->db->from('users');
+        return $this->db->get()->result();
+    }
+
+    public function delete($id_user) {
+        $this->db->where('id', $id_user);
+        $this->db->delete('users');
+    }//end delete
+
+    public function update($user, $id_user) {
+        $this->db->where('id', $id_user);
+        $this->db->update('users', $user);
+    }//end update
+
 }
 ?>
