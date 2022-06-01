@@ -42,7 +42,7 @@ var vmServer = new Vue({
             },
             sortable: ['id','name'], //
             requestFunction(data) { // working: obtain data from the URL
-                return axios.get('http://localhost/codeigniter/index.php/Lists/people', {
+                return axios.post('http://localhost/codeigniter/index.php/lists/people', {
                     params: data
                 }).catch(function (e) {
                     this.dispatch('error', e);
@@ -66,7 +66,6 @@ var vmServer = new Vue({
         options: {
             filterable: true,
             perPage: 10, // how many items I'm showing per page
-            page: 2, // what page I want to show
             headings: { // working: change default column headings
                 id: 'identificador',
                 comuna: 'comuna',
