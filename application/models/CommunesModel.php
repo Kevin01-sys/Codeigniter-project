@@ -40,6 +40,15 @@ class CommunesModel extends CI_Model {
         if (isset($columnOrder) && isset($orderDir)) {
             $this->db->order_by($columnOrder, $orderDir);
         }
+        if (isset($columnOrder)) {
+            $this->db->order_by($columnOrder, $orderDir);
+        }
+        $this->db->like('id', $filtro['query']);
+        $this->db->or_like('comuna', $filtro['query']);
+        $this->db->or_like('region', $filtro['query']);
+        /* $this->db->like('id', 'Anta');
+        $this->db->or_like('comuna', 'Anta');
+        $this->db->or_like('region', 'Anta'); */
         /* end: sql query */
         return $this->db->get()->result();
     }
