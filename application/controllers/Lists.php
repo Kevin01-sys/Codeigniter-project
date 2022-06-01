@@ -38,6 +38,7 @@ class Lists extends CI_Controller {
         $tableGet['ascending'] = $this->input->get('ascending');
         $tableGet['page'] = $this->input->get('page');
         $tableGet['byColumn'] = $this->input->get('byColumn');
+        $tableGet['orderBy'] = $this->input->get('orderBy');
         /* end: json to array */
         $data['comunas'] = $this->CommunesModel->select_communes_page($tableGet); // obtains a certain portion of the total number of records
         $data['contar_comunas'] = $this->CommunesModel->count_all_communes($tableGet); // one hundred percent of records are counted

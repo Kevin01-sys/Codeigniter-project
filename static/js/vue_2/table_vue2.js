@@ -64,7 +64,7 @@ var vmServer = new Vue({
         columns: ['id', 'comuna', 'region'], // must be the names of the data obtained by the URL
         tableData: [], //
         options: {
-            filterable: true,
+            filterable: true, // activated filter
             perPage: 10, // how many items I'm showing per page
             headings: { // working: change default column headings
                 id: 'identificador',
@@ -74,7 +74,6 @@ var vmServer = new Vue({
             texts:{
                 filterPlaceholder: 'filter' // working
             },
-            sortable: ['id','name'], //
             requestFunction(data) { // working: obtain data from the URL
                 return axios.get(this.url, {
                     params: data

@@ -18,7 +18,6 @@ class CommunesModel extends CI_Model {
         /* start: francisco's program logic: still unused */
         $length = $filtro['limit'];
         $start = ($filtro['page'] - 1) * $filtro['limit'];
-
         if (!empty($filtro['orderBy'])) {
             //Campo ascending = 1 indica orden ascendente otro valor indica descendente
             $orderDir = $filtro['ascending'] == 1 ? 'ASC' : 'DESC';
@@ -38,6 +37,9 @@ class CommunesModel extends CI_Model {
         $this->db->from('comunas');
         //$this->db->limit(20, 0);
         $this->db->limit($filtro['limit'], $pagination);
+        if (isset($columnOrder) && isset($orderDir)) {
+            $this->db->order_by($columnOrder, $orderDir);
+        }
         /* end: sql query */
         return $this->db->get()->result();
     }
