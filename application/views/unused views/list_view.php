@@ -15,20 +15,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
     <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">
+    <!-- <a href="<?php echo base_url(); ?>index.php/Lists/people" type="button" class="btn btn-danger">Revisar</a> -->
     <div id="peopleClient">
         <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
     </div>
+    <!-- <div class="col-md-8 col-md-offset-2">
+        <div id="peopleServer">
+            <v-server-table url="<?php echo base_url(); ?>index.php/Lists/people" :columns="columns" :options="options"/>
+        </div>
+    </div> -->
     <div class="col-md-8 col-md-offset-2">
         <div id="peopleServer">
             <v-server-table :columns="columns" :options="options"/>
         </div>
     </div>
 
+<!--     <div class="col-md-8 col-md-offset-2">
+        <div id="communesServer">
+            <v-server-table url="<?php echo base_url(); ?>index.php/lists/communes" :columns="columns" :options="options"/>
+        </div>
+    </div> -->
+
     <div class="col-md-8 col-md-offset-2">
         <div id="communesServer">
             <v-server-table ref="dt_datos" :columns="dt_datos.columns" :options="dt_datos.options"/>
         </div>
     </div>
+    <!-- <div class="col-md-8 col-md-offset-2">
+        <div id="people">
+        <v-server-table url="https://api.github.com/users/matfish2/repos" :columns="columns" :options="options">
+        </v-server-table>
+        </div>
+    </div> -->
     <!-- Vue version 2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>

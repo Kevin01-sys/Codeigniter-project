@@ -59,6 +59,43 @@ var vmServer = new Vue({
     }
 });
 
+/* var vmServer = new Vue({
+    el: "#communesServer",
+    data: {
+        columns: ['id', 'comuna', 'region'], // must be the names of the data obtained by the URL
+        tableData: [], //
+        options: {
+            params: { // customizable variables that are sent
+                test: '',
+                testing: 'T',
+            },
+            filterable: true, // activated filter
+            perPage: 10, // how many items I'm showing per page
+            headings: { // working: change default column headings
+                id: 'identificador',
+                comuna: 'comuna',
+                region: 'region',
+            },
+            texts:{
+                filterPlaceholder: 'filter' // working
+            },
+            requestFunction(data) { // working: obtain data from the URL
+                return axios.get(this.url, {
+                    params: data
+                }).catch(function (e) {
+                    this.dispatch('error', e);
+                });
+            },
+            responseAdapter({data}) { // working: If you are calling a foreign API or simply want to use your own keys, refer to the `responseAdapter` option.
+                return {
+                    data: data.comunas, // records with which Vue Table will work
+                    count: data.contar_comunas[0].lenght // total number of records that Vue Table will work with
+                }
+            }
+        },
+    }
+}); */
+
 var vmServer = new Vue({
     el: "#communesServer",
     data: {
@@ -94,3 +131,37 @@ var vmServer = new Vue({
         }
     }
 });
+
+
+    /* var vm = new Vue({
+        el: "#peopleServer",
+        data: {
+            columns: ['id', 'name', 'age'],
+            tableData: [],
+            options: {
+                requestFunction(data) {
+                    return axios.get('http://localhost/codeigniter/index.php/Lists/people', {
+                        params: data.name
+                    }).catch(function (e) {
+                        this.dispatch('error', e);
+                    });
+                }
+            }
+        }
+    }); */
+
+
+    /* var vmServer = new Vue({
+        el: "#peopleServer",
+        data: {
+            columns: ['name', 'username'],
+            tableData: [],
+            options: {}
+        },
+        created () {
+            axios.get("https://jsonplaceholder.typicode.com/users")
+                .then(res => {
+                    this.tableData = res.data
+                })
+        }
+    }); */
