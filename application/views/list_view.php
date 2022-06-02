@@ -10,20 +10,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Document</title>
     <!-- Vue version 2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
+    <!-- JavaScript Bundle with Popper -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
     <script src="https://unpkg.com/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-tables-2-premium@2.3.6/dist/vue-tables-2.min.js" integrity="sha256-V7nxQJDft6LBIbUZjfvl09AfcZXkiQkHp7neIrYHSfA=" crossorigin="anonymous"></script>
 </head>
 <body>
     <input type="hidden" id="base_url" value="<?php echo base_url(); ?>">
-    <div id="peopleClient">
-        <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
+    <div class="container">
+        <h2>Ingresar datos</h2>
+        <?php echo form_open('lists/addCommunes'); ?>
+            <div class="form-group">
+                <label for="region">Region:</label>
+                <input type="text" class="form-control" id="region" name="region" placeholder="Ingrese una región" >
+            </div>
+            <div class="form-group">
+                <label for="comuna">Comuna:</label>
+                <input type="text" class="form-control" id="comuna" name="comuna" placeholder="Ingrese una comuna" >
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        <?php echo form_close(); ?>
     </div>
-    <div class="col-md-8 col-md-offset-2">
-        <div id="peopleServer">
-            <v-server-table :columns="columns" :options="options"/>
-        </div>
-    </div>
-
+    <br>
     <div class="col-md-8 col-md-offset-2">
         <div id="communesServer">
             <v-server-table ref="dt_datos" :columns="dt_datos.columns" :options="dt_datos.options"/>

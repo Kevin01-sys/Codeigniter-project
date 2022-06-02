@@ -2,6 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CommunesModel extends CI_Model {
+    public function add($comuna){
+        $this->db->insert('comunas', $comuna);
+    }//end add
+
     public function select_all_communes(){
         $this->db->select('*');
         $this->db->from('comunas');

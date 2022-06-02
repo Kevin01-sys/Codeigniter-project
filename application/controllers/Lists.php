@@ -13,6 +13,16 @@ class Lists extends CI_Controller {
         $this->load->view('list_view.php');
     }
 
+    public function addCommunes(){
+        $comuna['region'] = $this->input->post('region');
+        $comuna['comuna'] = $this->input->post('comuna');
+        $comuna['provincia_id'] = 1;
+        $comuna['region_id'] = 1;
+        $comuna['provincia'] = 'ejemplo';
+        //var_dump($comuna);
+        $this->CommunesModel->add($comuna);
+        redirect('lists');
+    }
     public function people(){ // DATA JSON
         $jsonPost=json_decode(file_get_contents("php://input")); // get Json data as stdClass Object
 
