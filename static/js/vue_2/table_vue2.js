@@ -33,27 +33,13 @@ var vmServer = new Vue({
                         this.dispatch('error', e);
                     }.bind(this))
                 },
-                /* test: function (row) {
-                    console.log(row)
-                    //console.log(`testing method`);
-                } */
-                /* templates: {
-                    created_at() {
-                        return console.log('hola');
-                    }
-                }, */
-                /* methods: {
-                    delete: function () {
-                        console.log(`testing method`);
-                    }
-                } */
             }
         }
     },
-    methods: {
+    methods: { // working
         delete_row: function (row) {
             console.log(row)
-            //console.log(`testing method`);
+            //console.log(`testing method`)
         }
     }
 });

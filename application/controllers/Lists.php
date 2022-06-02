@@ -23,6 +23,13 @@ class Lists extends CI_Controller {
         $this->CommunesModel->add($comuna);
         redirect('lists');
     }
+
+    public function deleteCommune($id){
+        echo $id;
+		//$this->UserModel->delete($id_user);
+		//redirect('users');
+    }
+
     public function people(){ // DATA JSON
         $jsonPost=json_decode(file_get_contents("php://input")); // get Json data as stdClass Object
 

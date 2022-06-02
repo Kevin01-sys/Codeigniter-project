@@ -99,10 +99,10 @@ var vmServer = new Vue({
 var vmServer = new Vue({
     el: "#communesServer",
     data: {
-        //base_url: document.getElementById(`base_url`).value,
+        name: 'Variables estado en Vue',
         dt_datos: {
             loading: false,
-            columns: ['id', 'comuna', 'region'], // must be the names of the data obtained by the URL
+            columns: ['id', 'comuna','region','identificadores', 'buttons'], // must be the names of the data obtained by the URL
             options: {
                 params: { // customizable variables that are sent
                     test: '',
@@ -113,6 +113,7 @@ var vmServer = new Vue({
                     id: 'identificador',
                     comuna: 'comuna',
                     region: 'region',
+                    buttons: 'botones',
                 },
                 filterable: true, // activated filter
                 responseAdapter({data}) { // working: If you are calling a foreign API or simply want to use your own keys, refer to the `responseAdapter` option.
@@ -126,8 +127,28 @@ var vmServer = new Vue({
                     catch(function (e) {
                         this.dispatch('error', e);
                     }.bind(this))
-                }
+                },
+                /* test: function (row) {
+                    console.log(row)
+                    //console.log(`testing method`)
+                } */
+                /* templates: {
+                    created_at() {
+                        return console.log('hola')
+                    }
+                }, */
+                /* methods: {
+                    delete: function () {
+                        console.log(`testing method`)
+                    }
+                } */
             }
+        }
+    },
+    methods: { // working
+        delete_row: function (row) {
+            console.log(row)
+            //console.log(`testing method`)
         }
     }
 });
