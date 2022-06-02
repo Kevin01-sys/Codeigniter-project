@@ -37,7 +37,7 @@ class CommunesModel extends CI_Model {
         /* end: filters are created for query */
 
         /* start: sql query */
-        $this->db->select('id, comuna, region');
+        $this->db->select('id, comuna, region_id, provincia , provincia_id,region');
         $this->db->from('comunas');
         $this->db->limit($length, $start);
         if (isset($columnOrder) && isset($orderDir)) {

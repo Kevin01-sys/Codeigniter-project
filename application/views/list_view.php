@@ -36,6 +36,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="col-md-8 col-md-offset-2">
         <div id="communesServer">
             <v-server-table ref="dt_datos" :columns="dt_datos.columns" :options="dt_datos.options"/>
+                <div slot="buttons" slot-scope="props">
+                    <div class="col-md-12  m-0 p-0">
+                        <!-- <button  type="button" class="btn btn-primary btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">test</button> -->
+                        <button @click="delete_row(props)" class="btn btn-block dropdown-item pl-2 pr-2 pt-0 pb-0 text-2" >
+                            <i class="fa fa-trash pr-1"></i>
+                            Borrar
+                        </button>
+                    </div>
+                </div>
+                <div slot="identificadores" slot-scope="props">
+                        <div class="col-md-12  m-0 p-0">
+                        <small class="sub-td">
+                            <strong>Identificador general: </strong>
+                            {{ props.row.id }}
+                            <br>
+                            <strong>Identificador de provincia: </strong>
+                            {{ props.row.provincia_id }}
+                            <br>
+                            <strong>Identificador de region: </strong>
+                            {{props.row.region_id}}
+                        </small>
+                        </div>
+                    </div>
+                </div>
+            </v-server-table>
         </div>
     </div>
     <!-- Vue version 2 -->

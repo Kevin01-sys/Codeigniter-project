@@ -15,7 +15,7 @@ class CommunesModel extends CI_Model {
         $this->db->like('id', $filtro['query']);
         $this->db->or_like('comuna', $filtro['query']);
         $this->db->or_like('region', $filtro['query']);
-        /* exampe:
+        /* example:
         SELECT *
         FROM comunas
         WHERE id LIKE "%Arica%"OR comuna LIKE "%Arica%" OR region LIKE "%Arica%"
@@ -38,6 +38,14 @@ class CommunesModel extends CI_Model {
         /* start: filters are created for query */
         /* $posicionPage = $filtro['page']-1;
         $pagination = $posicionPage*$filtro['limit']; */
+
+        /*
+        page = always comes a 1.
+        pagination= page-1  // 1 is subtracted from page, to put it in the correct position
+        start = (page-1) *limit
+        0*25= 0 // 1*25= 25 // 2*25= 50  // 3*25= 75 // 4*25= 100
+         */
+
         $length = $filtro['limit'];
         $start = ($filtro['page'] - 1) * $filtro['limit'];
         /* end: filters are created for query */
