@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller {
-
     public function __construct(){
         parent::__construct();
         $this->load->helper('form');
@@ -22,7 +21,7 @@ class Users extends CI_Controller {
         $user['state'] = 1;
         //var_dump($user);
         $this->UserModel->add($user);
-        redirect('Users');
+        redirect('users');
     }
 
 	public function editar($id_persona) {

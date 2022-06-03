@@ -149,6 +149,18 @@ var vmServer = new Vue({
         delete_row: function (row) {
             console.log(row)
             //console.log(`testing method`)
+        },
+        update_row: function (props) {
+            console.log(props.row)
+            this.currentLine = props.row
+            console.log(this.currentLine)
+            /* this.currentLine = { // object to be sent is created
+                id : props.row.id,
+            } */
+
+            console.log(this.currentLine)
+            //document.getElementById('myModal').style.display = 'block';
+            //modal.modal();
         }
     }
 });

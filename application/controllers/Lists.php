@@ -24,12 +24,6 @@ class Lists extends CI_Controller {
         redirect('lists');
     }
 
-    /* public function deleteCommune($id){
-        echo $id;
-		//$this->UserModel->delete($id_user);
-		//redirect('users');
-    } */
-
     public function deleteCommune(){
         $jsonPost=json_decode(file_get_contents("php://input")); // get Json data as stdClass Object
         $tablePost['id'] = $jsonPost->id;
@@ -37,6 +31,15 @@ class Lists extends CI_Controller {
         $response = json_encode($tablePost);
         header('Content-Type: application/json');
         echo $response;
+    }
+
+    public function updateCommune(){
+        $id_commune = $this->input->post('idEdit');
+        $comuna['region'] = $this->input->post('regionEdit');
+        $comuna['comuna'] = $this->input->post('comunaEdit');
+        //print_r($comuna);
+        $this->CommunesModel->update($comuna, $id_commune);
+        redirect('lists');
     }
 
     public function people(){ // DATA JSON

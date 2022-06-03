@@ -11,6 +11,11 @@ class CommunesModel extends CI_Model {
         $this->db->delete('comunas');
     }//end delete
 
+    public function update($comuna, $id_commune){
+        $this->db->where('id', $id_commune);
+        $this->db->update('comunas', $comuna);
+    }//end add
+
     public function select_all_communes(){
         $this->db->select('*');
         $this->db->from('comunas');

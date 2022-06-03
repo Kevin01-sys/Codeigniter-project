@@ -2,8 +2,9 @@ Vue.use(VueTables.ServerTable, VueTables.Event);
 const base_url = document.getElementById(`base_url`).value
 
 var vmServer = new Vue({
-    el: "#communesServer",
+    el: "#app",
     data: {
+        currentLine: {},
         name: 'Variables estado en Vue',
         dt_datos: {
             loading: false,
@@ -38,34 +39,40 @@ var vmServer = new Vue({
     },
     methods: { // working
         delete_row: function (props) {
-            const objectSend = { // object to be sent is created
-                id : props.row.id,
-            }
-            const jsonSend = JSON.stringify(objectSend);  // Object is transformed to a json format valid for sending
-            console.log(`JSON to send: ${jsonSend}`);
-            const base_url = document.getElementById(`base_url`).value
-            const url = `${base_url}index.php/lists/deleteCommune`;
-            console.log(url)
-
-            const methodSend = 'POST';
-            fetch(url, {
-                method: methodSend,
-                body: jsonSend,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+            let text = `Está seguro de eliminar el registro: ${props.row.id}`;
+            if (confirm(text) == true) {
+                const objectSend = { // object to be sent is created
+                    id : props.row.id,
                 }
-            })
-            .then(response => response.json())
-            .then((json_data) => {
-                alert(`El registro ${json_data.id} ha sido eliminado`)
-                location.replace(`${base_url}index.php/lists/`)
-                //console.log(json_data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-            //console.log(`testing method`)
+                const jsonSend = JSON.stringify(objectSend);  // Object is transformed to a json format valid for sending
+                console.log(`JSON to send: ${jsonSend}`);
+                const base_url = document.getElementById(`base_url`).value
+                const url = `${base_url}index.php/lists/deleteCommune`;
+                console.log(url)
+
+                const methodSend = 'POST';
+                fetch(url, {
+                    method: methodSend,
+                    body: jsonSend,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then((json_data) => {
+                    alert(`El registro ${json_data.id} ha sido eliminado`)
+                    location.replace(`${base_url}index.php/lists/`)
+                    //console.log(json_data)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+            }
+        },
+        update_row: function (props) {
+            this.currentLine = props.row
+            console.log(this.currentLine)
         }
     }
 });
