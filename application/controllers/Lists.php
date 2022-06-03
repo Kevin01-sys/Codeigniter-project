@@ -24,10 +24,19 @@ class Lists extends CI_Controller {
         redirect('lists');
     }
 
-    public function deleteCommune($id){
+    /* public function deleteCommune($id){
         echo $id;
 		//$this->UserModel->delete($id_user);
 		//redirect('users');
+    } */
+
+    public function deleteCommune(){
+        $jsonPost=json_decode(file_get_contents("php://input")); // get Json data as stdClass Object
+        $tablePost['id'] = $jsonPost->id;
+        $this->CommunesModel->delete($tablePost);
+        $response = json_encode($tablePost);
+        header('Content-Type: application/json');
+        echo $response;
     }
 
     public function people(){ // DATA JSON

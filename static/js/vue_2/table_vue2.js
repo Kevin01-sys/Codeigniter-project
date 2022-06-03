@@ -37,8 +37,34 @@ var vmServer = new Vue({
         }
     },
     methods: { // working
-        delete_row: function (row) {
-            console.log(row)
+        delete_row: function (props) {
+            const objectSend = { // object to be sent is created
+                id : props.row.id,
+            }
+            const jsonSend = JSON.stringify(objectSend);  // Object is transformed to a json format valid for sending
+            console.log(`JSON to send: ${jsonSend}`);
+            const base_url = document.getElementById(`base_url`).value
+            const url = `${base_url}index.php/lists/deleteCommune`;
+            console.log(url)
+
+            const methodSend = 'POST';
+            fetch(url, {
+                method: methodSend,
+                body: jsonSend,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then((json_data) => {
+                alert(`El registro ${json_data.id} ha sido eliminado`)
+                location.replace(`${base_url}index.php/lists/`)
+                //console.log(json_data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
             //console.log(`testing method`)
         }
     }

@@ -34,18 +34,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Start: Vue-Table -->
         <div id="communesServer">
             <v-server-table ref="dt_datos" :columns="dt_datos.columns" :options="dt_datos.options"/>
-                <!-- buttons -->
-                <div slot="buttons" slot-scope="props">
-                    <div class="col-md-12  m-0 p-0">
-                        <button @click="delete_row(props)" class="btn btn-danger">
-                            <i class="fa fa-trash pr-1"></i>
-                            Eliminar
-                        </button>
-                    </div>
-                </div>
                 <!-- identificadores -->
                 <div slot="identificadores" slot-scope="props">
-                        <div class="col-md-12  m-0 p-0">
+                    <div class="col-md-12  m-0 p-0">
                         <small class="sub-td">
                             <strong>Identificador general: </strong>
                             {{ props.row.id }}
@@ -56,7 +47,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Identificador de region: </strong>
                             {{props.row.region_id}}
                         </small>
-                        </div>
+                    </div>
+                </div>
+                <!-- buttons -->
+                <div slot="buttons" slot-scope="props">
+                    <div class="col-md-12  m-0 p-0">
+                        <button @click="delete_row(props)" class="btn btn-danger">
+                            <i class="fa fa-trash pr-1"></i>
+                            Eliminar
+                        </button>
                     </div>
                 </div>
             </v-server-table>
